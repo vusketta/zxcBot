@@ -1,6 +1,6 @@
 package com.gmail.vusketta;
 
-import org.telegram.telegrambots.meta.api.objects.*;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.stickers.Sticker;
 
 import java.io.BufferedWriter;
