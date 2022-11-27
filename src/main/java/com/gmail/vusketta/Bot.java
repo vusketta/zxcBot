@@ -12,7 +12,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Bot extends TelegramLongPollingBot {
-    private static Logger logger = new Logger();
+    private static final Logger logger = new Logger();
 
     @Override
     public String getBotUsername() {
