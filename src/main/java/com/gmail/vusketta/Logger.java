@@ -29,10 +29,7 @@ public class Logger {
         System.out.println(text);
         try {
             BufferedWriter logger = new BufferedWriter(
-                    new FileWriter(
-                            "src\\main\\resources\\log.txt",
-                            true)
-            );
+                    new FileWriter("src\\main\\resources\\log.txt", true));
             logger.write(text);
             logger.newLine();
             logger.close();
