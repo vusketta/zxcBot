@@ -12,7 +12,8 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Bot extends TelegramLongPollingBot {
-    private static final Logger logger = new Logger();
+    private static final Logger access = new Logger("access.log");
+    private static final Logger error = new Logger("error.log");
 
     @Override
     public String getBotUsername() {
@@ -27,6 +28,7 @@ public class Bot extends TelegramLongPollingBot {
             token = sc.nextLine();
             sc.close();
         } catch (IOException e) {
+            error.logException(e);
             throw new RuntimeException(e);
         }
         return token; //Impossible to return null
@@ -37,7 +39,7 @@ public class Bot extends TelegramLongPollingBot {
         Message msg = update.getMessage();
         User user = msg.getFrom();
 
-        logger.logMessage(msg);
+        access.logMessage(msg);
 
         copyMessage(user.getId(), msg.getMessageId());
     }
@@ -50,6 +52,7 @@ public class Bot extends TelegramLongPollingBot {
         try {
             execute(sm);
         } catch (TelegramApiException e) {
+            error.logException(e);
             throw new RuntimeException(e);
         }
     }
@@ -63,6 +66,7 @@ public class Bot extends TelegramLongPollingBot {
         try {
             execute(cm);
         } catch (TelegramApiException e) {
+            error.logException(e);
             throw new RuntimeException(e);
         }
     }

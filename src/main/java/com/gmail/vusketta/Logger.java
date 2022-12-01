@@ -9,6 +9,12 @@ import java.io.IOException;
 import java.util.Date;
 
 public class Logger {
+    private static String fileName;
+
+    public Logger(final String fileName) {
+        Logger.fileName = fileName;
+    }
+
     public void logMessage(Message message) {
         try {
             StringBuilder sb = new StringBuilder();
@@ -25,11 +31,19 @@ public class Logger {
         }
     }
 
+    public void logException(Exception exception) {
+        try {
+            log(exception.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void log(String text) throws IOException {
         System.out.println(text);
         try {
             BufferedWriter logger = new BufferedWriter(
-                    new FileWriter("src\\main\\resources\\log.txt", true));
+                    new FileWriter("src\\main\\resources\\" + fileName, true));
             logger.write(text);
             logger.newLine();
             logger.close();
