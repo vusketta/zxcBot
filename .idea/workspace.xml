@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d1633c2-c3aa-4f33-8bdf-801946d4c5e3" name="Changes" comment="Beta Version 0.5">
+    <list default="true" id="3d1633c2-c3aa-4f33-8bdf-801946d4c5e3" name="Changes" comment="Beta Version 0.6">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/FastScanner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/Bot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/DeadlineCommand.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/Logger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +27,7 @@
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/pom.xml" root0="SKIP_INSPECTION" />
@@ -50,6 +54,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vuske\IdeaProjects\zxcBot\src\main\resources" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gmail.vusketta.Main" />
@@ -79,7 +88,10 @@
       <option name="presentableId" value="Default" />
       <updated>1669514101210</updated>
       <workItem from="1669514102464" duration="10478000" />
-      <workItem from="1669896946232" duration="668000" />
+      <workItem from="1669896946232" duration="712000" />
+      <workItem from="1669904665944" duration="11000" />
+      <workItem from="1670069193230" duration="11504000" />
+      <workItem from="1670087691025" duration="1008000" />
     </task>
     <task id="LOCAL-00001" summary="Beta Version 0.1">
       <created>1669523077173</created>
@@ -130,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669524618264</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Beta Version 0.6">
+      <created>1669897640846</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669897640846</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +192,7 @@
     <MESSAGE value="Beta Version 0.3" />
     <MESSAGE value="Beta Version 0.4" />
     <MESSAGE value="Beta Version 0.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="Beta Version 0.5" />
+    <MESSAGE value="Beta Version 0.6" />
+    <option name="LAST_COMMIT_MESSAGE" value="Beta Version 0.6" />
   </component>
 </project>

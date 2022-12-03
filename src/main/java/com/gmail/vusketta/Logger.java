@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.util.Date;
 
 public class Logger {
-    private static String fileName;
+    private final String fileName;
 
     public Logger(final String fileName) {
-        Logger.fileName = fileName;
+        this.fileName = fileName;
     }
 
     public void logMessage(Message message) {
@@ -32,8 +32,10 @@ public class Logger {
     }
 
     public void logException(Exception exception) {
+        String message = exception.getMessage();
+        System.out.println(message);
         try {
-            log(exception.getMessage());
+            log(message);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
