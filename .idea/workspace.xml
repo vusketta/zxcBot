@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d1633c2-c3aa-4f33-8bdf-801946d4c5e3" name="Changes" comment="Beta Version 0.6">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/FastScanner.java" afterDir="false" />
+    <list default="true" id="3d1633c2-c3aa-4f33-8bdf-801946d4c5e3" name="Changes" comment="Beta Version 0.7">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/Bot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/DeadlineCommand.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/vusketta/Logger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +89,7 @@
       <workItem from="1669896946232" duration="712000" />
       <workItem from="1669904665944" duration="11000" />
       <workItem from="1670069193230" duration="11504000" />
-      <workItem from="1670087691025" duration="1008000" />
+      <workItem from="1670087691025" duration="8785000" />
     </task>
     <task id="LOCAL-00001" summary="Beta Version 0.1">
       <created>1669523077173</created>
@@ -149,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669897640846</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Beta Version 0.7">
+      <created>1670088792597</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1670088792597</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +198,7 @@
     <MESSAGE value="Beta Version 0.4" />
     <MESSAGE value="Beta Version 0.5" />
     <MESSAGE value="Beta Version 0.6" />
-    <option name="LAST_COMMIT_MESSAGE" value="Beta Version 0.6" />
+    <MESSAGE value="Beta Version 0.7" />
+    <option name="LAST_COMMIT_MESSAGE" value="Beta Version 0.7" />
   </component>
 </project>

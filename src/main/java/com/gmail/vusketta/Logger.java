@@ -16,6 +16,8 @@ public class Logger {
     }
 
     public void logMessage(Message message) {
+        if (message == null) return;
+
         try {
             StringBuilder sb = new StringBuilder();
             sb.append("[").append(new Date()).append("] ");

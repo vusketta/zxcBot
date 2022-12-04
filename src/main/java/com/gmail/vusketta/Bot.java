@@ -39,8 +39,6 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         Message msg = update.getMessage();
-        User user = msg.getFrom();
-        Integer messageId = msg.getMessageId();
 
         access.logMessage(msg);
 
@@ -56,10 +54,10 @@ public class Bot extends TelegramLongPollingBot {
         Long chatId = message.getChatId();
         switch (text) {
             case "/start", "/start@PolyZXCBot" -> start(chatId);
-            case "/help" -> help(chatId);
-            case "/all" -> all(chatId);
-            case "/spin" -> spin(chatId);
-            case "/deadlines" -> deadlines(chatId);
+            case "/help", "/help@PolyZXCBot" -> help(chatId);
+            case "/all", "/all@PolyZXCBot" -> all(chatId);
+            case "/spin", "/spin@PolyZXCBot" -> spin(chatId);
+            case "/deadlines", "/deadlines@PolyZXCBot" -> deadlines(chatId);
             default -> throw new IllegalArgumentException();
         }
     }
