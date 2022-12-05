@@ -41,6 +41,7 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        if (!update.hasMessage()) return; // Attention
         Message msg = update.getMessage();
         if (msg == null) return;
         if (msg.isCommand()) onCommand(msg);
@@ -52,10 +53,10 @@ public class Bot extends TelegramLongPollingBot {
         Long chatId = message.getChatId();
         switch (text) {
             case "/start", "/start@PolyZXCBot" -> start(chatId);
-            case "/help", "/help@PolyZXCBot" -> help(chatId);
+            case "/help", "/help@PolyZXCBot" -> help(chatId);                //In process... (now only for troll)
             case "/all", "/all@PolyZXCBot" -> all(chatId);
             case "/spin", "/spin@PolyZXCBot" -> spin(message);
-            case "/deadlines", "/deadlines@PolyZXCBot" -> deadlines(chatId);
+            case "/deadlines", "/deadlines@PolyZXCBot" -> deadlines(chatId); //In process... (now only for troll)
             case "/pohuy", "/pohuy@PolyZXCBot" -> pohuy(message);
             default -> error.logException(new NoSuchCommandException());
         }
