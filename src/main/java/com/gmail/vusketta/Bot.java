@@ -56,7 +56,7 @@ public class Bot extends TelegramLongPollingBot {
             case "/all", "/all@PolyZXCBot" -> all(chatId);
             case "/spin", "/spin@PolyZXCBot" -> spin(message);
             case "/deadlines", "/deadlines@PolyZXCBot" -> deadlines(chatId);
-            case "/pohuy", "/pohuy@PolyZXCBot" -> pohuy(chatId);
+            case "/pohuy", "/pohuy@PolyZXCBot" -> pohuy(message);
             default -> error.logException(new NoSuchCommandException());
         }
     }
@@ -89,8 +89,7 @@ public class Bot extends TelegramLongPollingBot {
 
     private void spin(Message message) {
         Long chatId = message.getChatId();
-        Integer messageId = message.getMessageId();
-        deleteMessage(chatId.toString(), messageId);
+        deleteMessage(message);
         sendGif(chatId, "spin.mp4");
     }
 
@@ -98,11 +97,13 @@ public class Bot extends TelegramLongPollingBot {
         sendText(chatId, "Какая жалость... тут должны быть дедлайны, но их пока нет...");
     }
 
-    private void pohuy(Long chatId) {
+    private void pohuy(Message message) {
+        Long chatId = message.getChatId();
         List<String> fileNames = List.of("pohuypapich.jpeg", "pohuycry.jpg", "pohuyvizl.jpg");
         String fileName = fileNames.get(
                 new Random().nextInt(fileNames.size())
         );
+        deleteMessage(message);
         sendImage(chatId, fileName);
     }
 
@@ -155,8 +156,8 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    private void deleteMessage(String chatId, Integer messageId) {
-        DeleteMessage dm = new DeleteMessage(chatId, messageId);
+    private void deleteMessage(Message message) {
+        DeleteMessage dm = new DeleteMessage(message.getChatId().toString(), message.getMessageId());
         try {
             execute(dm);
         } catch (TelegramApiException e) {
