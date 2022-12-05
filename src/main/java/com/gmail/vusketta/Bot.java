@@ -1,9 +1,12 @@
 package com.gmail.vusketta;
 
+import com.gmail.vusketta.exceptions.NoSuchCommandException;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.CopyMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendAnimation;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -26,7 +29,7 @@ public class Bot extends TelegramLongPollingBot {
     public String getBotToken() {
         String token;
         try {
-            Scanner sc = new Scanner(new File("src/main/resources/token.txt"));
+            FastScanner sc = new FastScanner(new File("src/main/resources/token.txt"));
             token = sc.nextLine();
             sc.close();
         } catch (IOException e) {
@@ -39,14 +42,9 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         Message msg = update.getMessage();
-
+        if (msg == null) return;
+        if (msg.isCommand()) onCommand(msg);
         access.logMessage(msg);
-
-        if (msg.isCommand()) {
-            onCommand(msg);
-        } else {
-            // copyMessage(user.getId(), messageId);
-        }
     }
 
     private void onCommand(Message message) {
@@ -56,9 +54,10 @@ public class Bot extends TelegramLongPollingBot {
             case "/start", "/start@PolyZXCBot" -> start(chatId);
             case "/help", "/help@PolyZXCBot" -> help(chatId);
             case "/all", "/all@PolyZXCBot" -> all(chatId);
-            case "/spin", "/spin@PolyZXCBot" -> spin(chatId);
+            case "/spin", "/spin@PolyZXCBot" -> spin(message);
             case "/deadlines", "/deadlines@PolyZXCBot" -> deadlines(chatId);
-            default -> throw new IllegalArgumentException();
+            case "/pohuy", "/pohuy@PolyZXCBot" -> pohuy(chatId);
+            default -> error.logException(new NoSuchCommandException());
         }
     }
 
@@ -88,32 +87,35 @@ public class Bot extends TelegramLongPollingBot {
         sendText(chatId, members.substring(1, members.length() - 1));
     }
 
-    private void spin(Long chatId) {
+    private void spin(Message message) {
+        Long chatId = message.getChatId();
+        Integer messageId = message.getMessageId();
+        deleteMessage(chatId.toString(), messageId);
         sendGif(chatId, "spin.mp4");
     }
 
     private void deadlines(Long chatId) {
-//        String[] deadlines;
-//
-//        try {
-//            FastScanner scanner = new FastScanner(new File("src/main/resources/deadlines.txt"));
-//            deadlines = scanner.readText().split("</d/>");
-//            scanner.close();
-//        } catch (FileNotFoundException e) {
-//            throw new RuntimeException(e);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        if (deadlines.length == 0) {
-//            sendText(chatId, "Какая жалость... тут должны быть дедлайны, но их пока нет...");
-//        } else {
-//            StringBuilder stringBuilder = new StringBuilder();
-//            for (int i = 1; i < deadlines.length + 1; i++) {
-//                stringBuilder.append(i).append(") ").append(deadlines[i]);
-//            }
-//            sendText(chatId, stringBuilder.toString());
-//        }
+        sendText(chatId, "Какая жалость... тут должны быть дедлайны, но их пока нет...");
+    }
+
+    private void pohuy(Long chatId) {
+        List<String> fileNames = List.of("pohuypapich.jpeg", "pohuycry.jpg", "pohuyvizl.jpg");
+        String fileName = fileNames.get(
+                new Random().nextInt(fileNames.size())
+        );
+        sendImage(chatId, fileName);
+    }
+
+    private void sendImage(Long chatId, String fileName) {
+        SendPhoto sp = SendPhoto.builder()
+                .chatId(chatId.toString())
+                .photo(new InputFile(new File("src/main/resources/" + fileName), fileName))
+                .build();
+        try {
+            execute(sp);
+        } catch (TelegramApiException e) {
+            error.logException(e);
+        }
     }
 
     private void sendGif(Long chatId, String fileName) {
@@ -148,6 +150,15 @@ public class Bot extends TelegramLongPollingBot {
                 .build();
         try {
             execute(cm);
+        } catch (TelegramApiException e) {
+            error.logException(e);
+        }
+    }
+
+    private void deleteMessage(String chatId, Integer messageId) {
+        DeleteMessage dm = new DeleteMessage(chatId, messageId);
+        try {
+            execute(dm);
         } catch (TelegramApiException e) {
             error.logException(e);
         }
