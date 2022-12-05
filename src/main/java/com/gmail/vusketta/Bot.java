@@ -58,6 +58,7 @@ public class Bot extends TelegramLongPollingBot {
             case "/spin", "/spin@PolyZXCBot" -> spin(message);
             case "/deadlines", "/deadlines@PolyZXCBot" -> deadlines(chatId); //In process... (now only for troll)
             case "/pohuy", "/pohuy@PolyZXCBot" -> pohuy(message);
+            case "/sourcecode", "/sourcecode@PolyZXCBot" -> sourcecode(message);
             default -> error.logException(new NoSuchCommandException());
         }
     }
@@ -106,6 +107,10 @@ public class Bot extends TelegramLongPollingBot {
         );
         deleteMessage(message);
         sendImage(chatId, fileName);
+    }
+
+    private void sourcecode(Message message) {
+        sendText(message.getChatId(), "https://github.com/vusketta/zxcBot/blob/master/src/main/java/com/gmail/vusketta/Bot.java");
     }
 
     private void sendImage(Long chatId, String fileName) {
