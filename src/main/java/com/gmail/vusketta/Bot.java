@@ -49,17 +49,18 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private void onCommand(Message message) {
-        String text = message.getText();
+        String text = message.getText().toLowerCase();
         Long chatId = message.getChatId();
         switch (text) {
             case "/start", "/start@PolyZXCBot" -> start(chatId);
-            case "/help", "/help@PolyZXCBot" -> help(chatId);                //In process... (now only for troll)
+            case "/help", "/help@PolyZXCBot" -> help(chatId);                 //In process... (now only for troll)
             case "/all", "/all@PolyZXCBot" -> all(chatId);
             case "/spin", "/spin@PolyZXCBot" -> spin(message);
-            case "/deadlines", "/deadlines@PolyZXCBot" -> deadlines(chatId); //In process... (now only for troll)
+            case "/deadlines", "/deadlines@PolyZXCBot" -> deadlines(message); //In process... (now only for troll)
             case "/pohuy", "/pohuy@PolyZXCBot" -> pohuy(message);
             case "/sourcecode", "/sourcecode@PolyZXCBot" -> sourcecode(message);
-            default -> error.logException(new NoSuchCommandException());
+            case "/gelich", "/gelich@PolyZXCBot" -> gelich(chatId);
+            default -> error.logException(new NoSuchCommandException(text));
         }
     }
 
@@ -95,8 +96,12 @@ public class Bot extends TelegramLongPollingBot {
         sendGif(chatId, "spin.mp4");
     }
 
-    private void deadlines(Long chatId) {
-        sendText(chatId, "Какая жалость... тут должны быть дедлайны, но их пока нет...");
+    private void deadlines(Message message) {
+        Long chatId = message.getChatId();
+        deleteMessage(message);
+        sendText(chatId, "Дедлайн по физике - этот четверг в 23:59.");
+        sendText(chatId, "Дедлайн по матеше - эта пятница в 23:59.");
+        sendText(chatId, "Дедлайн по всему, что у нас на сайте https://openedu.ru/, - 25.12.2022.");
     }
 
     private void pohuy(Message message) {
@@ -111,6 +116,10 @@ public class Bot extends TelegramLongPollingBot {
 
     private void sourcecode(Message message) {
         sendText(message.getChatId(), "https://github.com/vusketta/zxcBot/blob/master/src/main/java/com/gmail/vusketta/Bot.java");
+    }
+
+    private void gelich(Long chatId) {
+        sendGif(chatId, "gelich.mp4");
     }
 
     private void sendImage(Long chatId, String fileName) {

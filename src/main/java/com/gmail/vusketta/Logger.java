@@ -35,7 +35,6 @@ public class Logger {
 
     public void logException(Exception exception) {
         String message = exception.getMessage();
-        System.out.println(message);
         try {
             log(message);
         } catch (IOException e) {
